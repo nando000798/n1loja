@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N1 SHOP</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+  --roxo: #a855f7;
+  --rosa: #ff4da6;
+  --azul: #3b82f6;
+  --amarelo: #facc15;
+  --bg: #f8f5ff;
+  --card: #ffffff;
+  --text: #1e1b4b;
+  --muted: #6b7280;
+  --grad: linear-gradient(135deg, var(--roxo), var(--rosa), var(--azul));
+  --grad-btn: linear-gradient(135deg, var(--roxo), var(--rosa));
+  --shadow: 0 8px 24px rgba(168, 85, 247, 0.12);
+  --radius: 18px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', Arial, sans-serif;-webkit-tap-highlight-color:transparent;}
+body{background:var(--bg); color:var(--text); min-height:100vh;}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow: 0 2px 16px rgba(168, 85, 247, 0.08);
+}
+.logo{
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight:700;
+  font-size:20px;
+}
+
+.icons{display:flex;gap:10px;}
+
+.iconBox{
+  width:44px;height:44px;
+  background:var(--card);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  position:relative;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(168, 85, 247, 0.1);
+  transition:.2s;
+}
+.iconBox:active{transform:scale(0.94);}
+.icon{width:20px;opacity:0.8;}
+
+.badge{
+  position:absolute;
+  top:-5px;right:-5px;
+  background:var(--grad);
+  color:white;
+  font-size:10px;
+  font-weight:600;
+  padding:3px 6px;
+  border-radius:10px;
+  min-width:18px;
+  text-align:center;
+}
+
+/* SEARCH */
+.search{padding:8px 16px 14px;}
+.search input{
+  width:100%;
+  padding:12px 16px;
+  border-radius:14px;
+  border:2px solid transparent;
+  background:var(--card);
+  box-shadow: var(--shadow);
+  font-size:14px;
+  outline:none;
+}
+.search input:focus{
+  border-color: var(--roxo);
+}
+
+/* SLIDER */
+.slider{margin:0 16px 16px;overflow:hidden;border-radius:18px;box-shadow:var(--shadow);}
+.track{display:flex;transition:.5s ease-out;}
+.slide{min-width:100%;height:150px;}
+.slide img{width:100%;height:100%;object-fit:cover;}
+
+/* GRID */
+.grid{
+  padding:0 16px 16px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  overflow:hidden;
+  position:relative;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(168, 85, 247, 0.08);
+}
+.card img{width:100%;height:130px;object-fit:cover;display:block;}
+
+.info{padding:12px;}
+.name{font-weight:600;font-size:14px;margin-bottom:3px;}
+.price{
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight:700;
+  font-size:17px;
+  margin:4px 0 8px;
+}
+
+.buy{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:11px;
+  background:var(--grad-btn);
+  color:white;
+  font-weight:600;
+  font-size:13px;
+  cursor:pointer;
+}
+.buy:active{opacity:0.8;}
+
+/* FAVORITO */
+.fav{
+  position:absolute;
+  top:8px;
+  right:8px;
+  background:rgba(255,255,255,0.95);
+  border-radius:50%;
+  width:34px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-size:16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* CART */
+.item{
+  display:flex;
+  gap:12px;
+  margin:10px 16px;
+  padding:12px;
+  background:var(--card);
+  border-radius:14px;
+  box-shadow: var(--shadow);
+}
+.item img{width:70px;height:70px;border-radius:10px;object-fit:cover;}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:6px;
+}
+.qty button{
+  width:30px;
+  height:30px;
+  border:none;
+  border-radius:8px;
+  background:var(--bg);
+  font-weight:700;
+  cursor:pointer;
+}
+
+.totalValor{
+  padding:16px;
+  font-weight:700;
+  font-size:18px;
+  text-align:right;
+}
+
+.finish{
+  margin:0 16px 16px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg, #10b981, #34d399);
+  color:white;
+  font-weight:700;
+  font-size:15px;
+  width:calc(100% - 32px);
+  cursor:pointer;
+}
+
+/* FAVORITOS */
+.favItem{
+  display:flex;
+  gap:12px;
+  margin:10px 16px;
+  padding:12px;
+  background:var(--card);
+  border-radius:14px;
+  box-shadow: var(--shadow);
+}
+.favItem img{width:70px;height:70px;border-radius:10px;object-fit:cover;}
+
+.favBtns{display:flex;gap:6px;margin-top:6px;}
+.favBtns button{
+  flex:1;
+  padding:7px;
+  border:none;
+  border-radius:8px;
+  font-weight:600;
+  font-size:12px;
+  cursor:pointer;
+}
+.favBtns button:first-child{
+  background:var(--grad-btn);
+  color:white;
+}
+.favBtns button:last-child{
+  background:var(--bg);
+  color:var(--muted);
+}
+
+/* LOADING */
+#loading{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  justify-content:center;
+  align-items:center;
+  z-index:100;
+}
+.loader{
+  width:50px;height:50px;
+  border:4px solid #f3e8ff;
+  border-top:4px solid var(--roxo);
+  border-right:4px solid var(--rosa);
+  border-radius:50%;
+  animation:spin 0.8s linear infinite;
+}
+@keyframes spin{100%{transform:rotate(360deg);}}
+
+/* TELAS */
+.screen{display:none;}
+.active{display:block;}
+
+.headerTitle{
+  position:relative;
+  font-weight:600;
+  font-size:17px;
+}
+.headerTitle::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:100%;
+  height:3px;
+  background:var(--amarelo);
+  border-radius:3px;
+}
+
+.empty{
+  text-align:center;
+  padding:40px 20px;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading"><div class="loader"></div></div>
+
+<!-- HOME -->
+<div id="shop" class="screen active">
+
+<div class="header">
+  <span class="logo">N1 SHOP</span>
+  <div class="icons">
+    <div class="iconBox" onclick="go('fav')">
+      <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png">
+    </div>
+    <div class="iconBox" onclick="go('cart')">
+      <img class="icon" src="https://cdn-icons-png.flaticon.com/512/263/263142.png">
+      <span id="count" class="badge">0</span>
+    </div>
+  </div>
+</div>
+
+<div class="search">
+  <input placeholder="Buscar produtos..." oninput="search(this.value)">
+</div>
+
+<div class="slider">
+  <div class="track" id="track">
+    <div class="slide"><img src="https://historical-aqua-v7h0rlsmnd.edgeone.app/1_20260502_111931_0000.png"></div>
+    <div class="slide"><img src="https://visible-rose-ufilz9rv0h.edgeone.app/2_20260502_111931_0001.png"></div>
+    <div class="slide"><img src="https://wonderful-bronze-gcigdvndke.edgeone.app/3_20260502_111932_0002.png"></div>
+    <div class="slide"><img src="https://sm.ign.com/ign_br/screenshot/default/game-play-update-screen-1024x576_f3rb.png"></div>
+  </div>
+</div>
+
+<div class="grid" id="shopList"></div>
+
+</div>
+
+<!-- CART -->
+<div id="cart" class="screen">
+  <div class="header">
+    <div class="iconBox" onclick="go('shop')">
+      <img class="icon" src="https://cdn-icons-png.flaticon.com/512/271/271220.png">
+    </div>
+    <span class="headerTitle">Carrinho</span>
+  </div>
+  <div id="cartItems"></div>
+  <div class="totalValor" id="totalValor"></div>
+  <button class="finish" onclick="finish()">FINALIZAR PEDIDO</button>
+</div>
+
+<!-- FAVORITOS -->
+<div id="fav" class="screen">
+  <div class="header">
+    <div class="iconBox" onclick="go('shop')">
+      <img class="icon" src="https://cdn-icons-png.flaticon.com/512/271/271220.png">
+    </div>
+    <span class="headerTitle">Favoritos</span>
+  </div>
+  <div id="favList"></div>
+</div>
+
+<script>
+const items = [
+{id:1,name:"CONTA FAKE AVACOINS 15K",price:1.50,img:"https://cdn3.xsolla.com/img/misc/images/1f0163bbf8162a58e897572283b12a6d.png"},
+{id:2,name:"CONTA FAKE AVACOINS 25K",price:2.00,img:"https://cdn3.xsolla.com/image-proxy/rs:fit:728:0/f:webp/static/img/misc/images/4879e63c7a97db076f91caf174b461a3.png@webp"},
+{id:3,name:"CONTA FAKE AVACOINS 50K",price:6.50,img:"https://cdn3.xsolla.com/image-proxy/rs:fit:728:0/f:webp/static/img/misc/images/0a0331a909bb8c97a782d16d31195228.png@webp"},
+{id:4,name:"Cosmos Hedge Wall Divider With Heart Cutout",price:2.0,img:"https://cdn.avakin.com/content/thumbnails/furniture/Ornaments/ornaments_cosmos_aprbotquest26_hedgewall1_256.webp"},
+{id:5,name:"Ikon Elite Ennui Dress",price:4.5,img:"https://cdn.avakin.com/content/thumbnails/Avakin/female01/female01_torso_ikonelitecirrus1f_256.webp"},
+{id:6,name:"Superman Original Logo T-shirt",price:2.50,img:"https://cdn.avakin.com/content/thumbnails/Avakin/male01/male01_torso_tshirt3_tvstoreonlinetshirt3m_256.webp"},
+{id:7,name:"La Haute Couture Grey Hoodie Jacket Set",price:15,img:"https://cdn.avakin.com/content/thumbnails/Avakin/male01/male01_torso_yumesignalfromnowhere1msplittophighrespbr_grey_256.webp"},
+{id:8,name:"Underwater Island - Night",price:10,img:"https://cdn.avakin.com/content/thumbnails/Areas/Apartment/A_Dubai_Underwater_Night/apartment_a_dubai_underwater_night_256.webp"},
+{id:9,name:"Winter Formal Party Apartment",price:12.00,img:"https://cdn.avakin.com/content/thumbnails/Areas/Apartment/A_SuburbanHouse_Prom_Day/apartment_a_suburbanhouse_prom_day_256.webp"},
+{id:10,name:"Koh Samui Yacht - Night",price:5.00,img:"https://cdn.avakin.com/content/thumbnails/Areas/Apartment/A_Yacht_Thai_Night/apartment_a_yacht_thai_night_256.webp"},
+{id:11,name:"KIT PET NORMAL",price:5.70,img:"https://instagram.fbel6-1.fna.fbcdn.net/v/t51.82787-15/645997639_18028099991626021_4270927768984972953_n.webp?stp=dst-webp_p240x240&_nc_cat=102&ig_cache_key=Mzg0NjQ2NDAxMDE3MTA0MDU0Ng%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjg2NHgxMDgwLnNkci5DMyJ9&_nc_ohc=zgOQ8BRd9pUQ7kNvwEsdOd6&_nc_oc=AdqbVRQjf0b1Fy1yXtAREM5twta7rsEbWYy94FxHPmzTJ1g02evyxDYbdUMrYtNSePTAE4OWGG90cTy19YNwEYDm&_nc_zt=23&_nc_ht=instagram.fbel6-1.fna&_nc_gid=qp0lnZChXfY6ZZlZXSR5qQ&_nc_ss=7b689&oh=00_Af5dngH8ApCWu-ZC0_USF6kuJVfJyPlMGGBJgzAjymCyUQ&oe=69FBB799"},
+{id:12,name:"KIT BLUSA NORMAL",price:5.70,img:"https://instagram.fbel6-1.fna.fbcdn.net/v/t51.82787-15/645902166_18028100156626021_454389322635016683_n.webp?stp=dst-webp_p240x240&_nc_cat=110&ig_cache_key=Mzg0NjQ2NDUzNDAwNjAxNTMwOQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjg2NHgxMDgwLnNkci5DMyJ9&_nc_ohc=qsV_yQrUORYQ7kNvwGKZDGI&_nc_oc=AdpIywmxs3wxTcNYoUdVUDak1m4gzybHo9ZIp4MDTeCR_HQanJB7LHgiig_4Tj0qKrKNIzr_A5Pl8KkeI264Ba1Z&_nc_zt=23&_nc_ht=instagram.fbel6-1.fna&_nc_gid=qp0lnZChXfY6ZZlZXSR5qQ&_nc_ss=7b689&oh=00_Af4P4p9waWwR018tg3AHnPsrzlheGHZAZDXF90rfWkl2DQ&oe=69FBDB6D"},
+{id:13,name:"ASINATURA SEMANAL - FREE FIRE",price:10,img:"https://cdn-gop.garenanow.com/gop/app/0000/100/067/rebate/0000/000/002/logo.png"},
+{id:14,name:"ASINATURA MENSAL - FREE FIRE",price:45,img:"https://cdn-gop.garenanow.com/gop/app/0000/100/067/rebate/0000/081/041/logo.png"},
+{id:15,name:"PASSE BOOYAH - FREE FIRE",price:15,img:"https://cdn-gop.garenanow.com/gop/app/0000/100/067/item/0803/000/000/logo.png"},
+];
+
+let cart={}, fav=[];
+
+function renderShop(list=items){
+  const frag = document.createDocumentFragment();
+  list.forEach(item=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="fav" onclick="toggleFav(${item.id})">
+        ${fav.includes(item.id)?"❤️":"🤍"}
+      </div>
+      <img src="${item.img}" loading="lazy">
+      <div class="info">
+        <div class="name">${item.name}</div>
+        <div class="price">R$ ${item.price}</div>
+        <button class="buy" onclick="add(${item.id})">Comprar</button>
+      </div>
+    `;
+    frag.appendChild(card);
+  });
+  shopList.innerHTML = '';
+  shopList.appendChild(frag);
+}
+renderShop();
+
+function go(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  if(id==="cart") renderCart();
+  if(id==="fav") renderFav();
+}
+
+function add(id){
+  const item=items.find(i=>i.id===id);
+  if(!cart[id]) cart[id]={...item,qty:1};
+  else cart[id].qty++;
+  updateCount();
+}
+
+function updateCount(){
+  count.innerText=Object.values(cart).reduce((a,b)=>a+b.qty,0);
+}
+
+function renderCart(){
+  const frag = document.createDocumentFragment();
+  let valorTotal=0;
+
+  Object.values(cart).forEach(item=>{
+    valorTotal+=item.price*item.qty;
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.innerHTML = `
+      <img src="${item.img}">
+      <div style="flex:1">
+        <b>${item.name}</b><br>
+        R$ ${item.price}
+        <div class="qty">
+          <button onclick="change(${item.id},-1)">-</button>
+          ${item.qty}
+          <button onclick="change(${item.id},1)">+</button>
+        </div>
+      </div>
+    `;
+    frag.appendChild(div);
+  });
+
+  cartItems.innerHTML = '';
+  if(Object.keys(cart).length === 0){
+    cartItems.innerHTML = '<div class="empty">Carrinho vazio 🛒</div>';
+  }else{
+    cartItems.appendChild(frag);
+  }
+  totalValor.innerText = Object.keys(cart).length? "Total: R$ "+valorTotal.toFixed(2) : "";
+}
+
+function change(id,val){
+  cart[id].qty+=val;
+  if(cart[id].qty<=0) delete cart[id];
+  renderCart();
+  updateCount();
+}
+
+/* FINALIZAR COM COMPROVANTE NOVO */
+function finish(){
+  if(Object.keys(cart).length===0){
+    alert("Carrinho vazio!");
+    return;
+  }
+  loading.style.display="flex";
+
+  let valorTotal=0;
+  let totalItens=0;
+  let listaProdutos="";
+
+  Object.values(cart).forEach(item=>{
+    valorTotal+=item.price*item.qty;
+    totalItens+=item.qty;
+    listaProdutos+=`- ${item.name}%0A Quantidade: ${item.qty}%0A Valor unitário: R$ ${item.price.toFixed(2)}%0A%0A`;
+  });
+
+  const data = new Date().toLocaleDateString('pt-BR');
+
+  let text=`🛒 N1 SHOP - COMPROVANTE DE PEDIDO%0A%0A`;
+  text+=`📦 Produto(s):%0A${listaProdutos}`;
+  text+=`-----------------------------%0A%0A`;
+  text+=`📊 Resumo:%0A`;
+  text+=`Total de itens: ${totalItens}%0A`;
+  text+=`💰 Total: R$ ${valorTotal.toFixed(2)}%0A%0A`;
+  text+=`-----------------------------%0A%0A`;
+  text+=`📅 Data: ${data}%0A%0A`;
+  text+=`📲 Forma de contato: WhatsApp%0A%0A`;
+  text+=`Obrigado pela compra! 💜`;
+
+  setTimeout(()=>{
+    loading.style.display="none";
+    window.open(`https://wa.me/559191174119?text=${text}`);
+  },1200);
+}
+
+function toggleFav(id){
+  if(fav.includes(id)){
+    fav=fav.filter(f=>f!==id);
+  }else{
+    fav.push(id);
+  }
+  renderShop();
+}
+
+function renderFav(){
+  const frag = document.createDocumentFragment();
+  fav.forEach(id=>{
+    const item=items.find(i=>i.id===id);
+    const div = document.createElement('div');
+    div.className = 'favItem';
+    div.innerHTML = `
+      <img src="${item.img}">
+      <div style="flex:1">
+        <b>${item.name}</b><br>
+        R$ ${item.price}
+        <div class="favBtns">
+          <button onclick="addFromFav(${id})">Adicionar</button>
+          <button onclick="removeFav(${id})">Remover</button>
+        </div>
+      </div>
+    `;
+    frag.appendChild(div);
+  });
+  favList.innerHTML = '';
+  if(fav.length === 0){
+    favList.innerHTML = '<div class="empty">Nenhum favorito ainda 💜</div>';
+  }else{
+    favList.appendChild(frag);
+  }
+}
+
+function addFromFav(id){
+  add(id);
+  fav=fav.filter(f=>f!==id);
+  renderFav();
+  renderShop();
+}
+
+function removeFav(id){
+  fav=fav.filter(f=>f!==id);
+  renderFav();
+  renderShop();
+}
+
+function search(v){
+  renderShop(items.filter(i=>i.name.toLowerCase().includes(v.toLowerCase())));
+}
+
+let slideIndex=0;
+setInterval(()=>{
+  slideIndex=(slideIndex+1)%4;
+  track.style.transform=`translateX(-${slideIndex*100}%)`;
+},3500);
+</script>
+
+</body>
+</html>
