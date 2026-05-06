@@ -187,7 +187,7 @@ function closeCart(){$('#overlay').classList.remove('ativo');$('#drawer').classL
 function renderCart(){const b=$('#items');if(!c.length){b.innerHTML='<div class="empty">CARRINHO VAZIO :/</div>';}else{b.innerHTML=c.map(i=>`<div class="item"><img src="${i.img||''}" class="itemImg" onerror="imgFallback(event)"><div class="itemInfo"><h4>${i.name}</h4><div class="itemPrice">R$ ${(i.price*i.q).toFixed(2)}</div><div class="itemBtns"><button onclick="change(${i.id},-1)">−</button><span>${i.q}</span><button onclick="change(${i.id},1)">+</button></div></div></div>`).join('');}$('#total').textContent=`Total: R$ ${c.reduce((a,b)=>a+b.price*b.q,0).toFixed(2)}`;}
 function change(id,v){const i=c.findIndex(x=>x.id===id);c[i].q+=v;if(c[i].q<=0)c.splice(i,1);save();renderCart();upd();}
 function clearCart(){if(confirm('Limpar todo o carrinho?')){c=[];save();renderCart();upd();toast('Carrinho limpo!');}}
-function checkout(){if(!c.length)return;let m="🎮 *PEDIDO AVASHOPP*%0A";c.forEach(i=>m+=`${i.name}%0A${i.q}x R$ ${i.price.toFixed(2)} = R$ ${(i.price*i.q).toFixed(2)}%0A%0A`);m+=`💰 *Total: R$ ${c.reduce((a,b)=>a+b.price*b.q,0).toFixed(2)}*%0A%0A📦 *Entrega: Imediata via WhatsApp*%0A✅ *Garantia: 100% Seguro*`;window.open(`https://wa.me/${CONFIG.whatsapp}?text=${m}`);}
+function checkout(){if(!c.length)return;let m="🎮 *PEDIDO N1AVAKIN*%0A";c.forEach(i=>m+=`${i.name}%0A${i.q}x R$ ${i.price.toFixed(2)} = R$ ${(i.price*i.q).toFixed(2)}%0A%0A`);m+=`💰 *Total: R$ ${c.reduce((a,b)=>a+b.price*b.q,0).toFixed(2)}*%0A%0A📦 *Entrega: Imediata via WhatsApp*%0A✅ *Garantia: 100% Seguro*`;window.open(`https://wa.me/${CONFIG.whatsapp}?text=${m}`);}
 load();
 </script>
 </body>
